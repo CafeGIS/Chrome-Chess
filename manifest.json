@@ -1,0 +1,13 @@
+{
+  "name": "Chess",
+  "version": "1.0",
+  "options_page": "options.html",
+  "icons": { "48": "chess48.png",
+          "128": "chess128.png" },
+  "description": "Chess is a board game that you can play against the computer and directly in your popup.",
+  "browser_action": {
+    "default_icon": "chess19.png",
+	"default_title": "Play Chess",
+	"popup": "popup.html"
+  }
+}

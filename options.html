@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Chess Options</title>
+		<style type="text/css" media="screen">
+			body{
+				background: no-repeat white -webkit-gradient(linear, 0% 0%, 0% 30%, from(#000), to(white));
+				margin:0;
+				padding:0;
+			}
+			
+			#header{
+				height:180px;
+				color: rgb(60, 57, 64);
+				text-align:center;
+				margin-top:-30px;
+			}
+			
+			#header h1{
+				padding-top:35px;
+				font-family: "Myriad Pro", Helvetica, Arial, sans-serif;
+				color:white;
+				font-size:45px;
+			}
+			#header h2{
+				padding-top:0px;
+				font-family: "Myriad Pro", Helvetica, Arial, sans-serif;
+				color:white;
+				font-size:20px;
+				margin: 0;
+			}
+			
+			#content{
+				background-color:#fff;
+				height:200px;
+				width:300px;
+				margin:25px auto 0 auto;
+				-moz-border-radius:10px;
+				-webkit-border-radius:10px;
+			}
+			
+			img {
+		-webkit-transition: all .2s ease-in-out;
+		-webkit-transform: scale(0.7);
+		width:110px;
+		height:110px;
+	}
+	
+	#content .center {
+				align:center;
+				text-align:center;
+				vertical-align:center;
+			}
+	
+	img:hover {
+		-webkit-transform: scale(1.0);
+	}
+	
+	table td {
+	border-width: 1px;
+	padding: 5px;
+	border-style: dashed;
+	border-color: #ccc;
+	background-color: white;
+}
+
+table td:hover {
+	background-color: #fff8dc;
+}
+	
+		</style>
+	</head>
+	<body id="body" onload="init()">
+		<div id="container">
+			<div id="header">
+					<h1>Chess</h1>
+			</div>
+			
+			<script src="lib/options.js" type="text/javascript" charset="utf-8"></script>
+			<div id="content">
+				<div>
+					<script>
+						function init() {
+							var a = options.get('pawn') || 1;
+							document.getElementById('pawn').selectedIndex = a - 1;
+							a = options.get('level') || 1;
+							document.getElementById('level').selectedIndex = a - 1;
+							a = options.get('swap') || 83;
+							document.getElementById('swap').value = a;
+							document.getElementById('swap_s').innerHTML = String.fromCharCode(a)
+							a = options.get('undo') || 85;
+							document.getElementById('undo').value = a;
+							document.getElementById('undo_s').innerHTML = String.fromCharCode(a)
+						}
+						
+						function set_default() {
+							options.set('pawn', 1);
+							options.set('level', 2);
+							options.set('undo', 85);
+							options.set('swap', 83);
+						}
+						
+						function keyPress(e,b) {
+							var unicode=e.keyCode? e.keyCode : e.charCode;
+							change(b,unicode);
+							document.getElementById(b).value = unicode;
+							document.getElementById(b + '_s').innerHTML = String.fromCharCode(unicode)
+						}
+						
+						function change(a,b) {
+						 switch(a) {
+							case 'pawn':
+								options.set('pawn', b);
+								break;
+							case 'level':
+								options.set('level', b);
+								break;
+							case 'undo':
+								options.set('undo', b);
+								break;
+							case 'swap':
+								options.set('swap', b);
+								break;
+								
+						 }
+						}
+					</script>
+					<table style="width: 100%">
+						<tr>
+							<td><table><tbody>
+					<tr><th><input id="undo" style="width:15px" onFocus="this.value=''" onkeyup="keyPress(event,'undo')" value="85"></input></th><td id="undo_s"></td><td>Undo</td></tr>
+					<tr><th><input id="swap" style="width:15px" onFocus="this.value=''" onkeyup="keyPress(event,'swap')" value="83"></input></th><td id="swap_s"></td><td>Swap</td></tr>
+					</tbody></table></td>
+						</tr>
+						<tr>
+						<td><div id="pawn_div">
+					Next pawn becomes:
+					<select id="pawn" onChange="change('pawn',this.selectedIndex + 1)" name="p">
+						<option value="1">queen</option>
+						<option value="2">bishop</option>
+						<option value="3">knight</option>
+						<option value="4">rook</option>
+					</select>
+					</div></td>
+						</tr>
+						<tr>
+						<td><div id="level_div">
+					Computer level:
+					<select id="level" onChange="change('level',this.selectedIndex + 1)" name="l">
+						<option value="1">stupid</option>
+						<option value="2">middling</option>
+						<option value="3">slow</option>
+					</select>
+					</div></td>
+						</tr>
+						<tr>
+						<td><button onclick="set_default()">Reset to Default</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>		
+	
+	<script src="lib/3rdparty/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/color.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+	var col_colors = ['blue', 'red', 'green','orange', 'black', 'orange', 'darkorchid', 'darkblue', 'white', 'gold']
+	var col_int = 0;
+	bg_shift('orange');
+	
+	var col_timer = window.setInterval(function() {
+		bg_shift(col_colors[col_int]);
+		col_int++;
+		if (col_int == col_colors.length) {
+			col_int = 0;
+		}
+	}, 5000)
+	
+	function bg_shift(to,from) {
+		var z = color.get(to);
+		  if (!from) var y = color.current_color;
+		  else var y = color.get(from);
+		  for (var n = 0;n!=z.length;n++) {
+			switch(n) {
+			case 0: 
+				color.R = new whtb_custom(y[0], z[0], "", 'px');
+				color.R.count(color.R);
+				break;
+			case 1:
+				color.G = new whtb_custom(y[1], z[1], "", 'px');
+				color.G.count(color.G);
+				break;
+			case 2:
+				color.B = new whtb_custom(y[2], z[2], "", 'px');
+				color.B.count(color.B);
+				break;
+			case 3:
+				color.O = new whtb_custom(y[3], z[3], "", 'px');
+				color.O.count(color.O);
+				break;
+				}
+			}
+		  color.RGBO = new whtb_custom(0, 300, "document.getElementsByTagName('body')[0].style.background = 'no-repeat white -webkit-gradient(linear, 0% 0%, 0% 30%, from('+'rgba('+[color.R.now,color.G.now,color.B.now,color.O.now]+')'+'), to(white))'", 'px');
+		  color.RGBO.count(color.RGBO);
+		  color.current_color = z;
+		 }
+	</script>
+</html>

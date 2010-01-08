@@ -1,0 +1,110 @@
+<html>
+<head>
+	<title>Chess</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" href="chess.css" type="text/css" />
+	<script src="lib/options.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		function keyPress(e) {
+			var unicode=e.keyCode? e.keyCode : e.charCode;
+			var z = parseInt(options.get('undo'));
+			var s = parseInt(options.get('swap'));
+			switch (unicode) {
+				case z: 
+					Gb();
+					break;
+				case s:
+					Rf(8-P);
+					break;
+				}
+		}
+	</script>
+</head>
+<body onselectstart="return false" onkeyup="keyPress(event)" onmousedown="return false" onload="H();init()">
+	<form name="FF" method="post" action="index.html">
+		<table border="0" cellspacing="2" align="center" class="mainTable">
+		<tbody>
+		<tr style="display:none;" class="controlBarUpper" id="size_top">
+			<td colspan="2" class="controlBar">
+				<table width="100%"><tr>
+				<td class="buttonBarUpper">
+					<button onclick="Gb(); return false;">&nbsp;undo&nbsp;</button>
+					<button onclick="Rf(8-P); return false;">&nbsp;swap&nbsp;</button><br/>
+				</td>
+				</tr></table>
+			</td>
+		</tr>
+		<tr id="size_middle">
+			<td>
+				<script src="chess.js"></script>
+			</td>
+			<td style="display:none;" id="size_right">
+				<textarea name="b"></textarea>
+			</td>
+		</tr>
+		<tr style="display:none;" id="size_bottom" class="controlBarBottom">
+			<td colspan="2" class="controlBar">
+				<script>
+						function init() {
+							var a = options.get('pawn') || 1;
+							options.set('pawn',a);
+							document.getElementById('pawn').selectedIndex = a - 1;
+							a = options.get('level') || 1;
+							options.set('level',a);
+							document.getElementById('level').selectedIndex = a - 1;
+							a = options.get('swap') || 83;
+							options.set('swap',a);
+							a = options.get('undo') || 85;
+							options.set('undo',a);
+						}
+						
+						function set_default() {
+							options.set('pawn', 1);
+							options.set('level', 2);
+							options.set('undo', 85);
+							options.set('swap', 83);
+						}
+						
+						function change(a,b) {
+						 switch(a) {
+							case 'pawn':
+								options.set('pawn', b);
+								break;
+							case 'level':
+								options.set('level', b);
+								break;
+							case 'undo':
+								options.set('undo', b);
+								break;
+							case 'swap':
+								options.set('swap', b);
+								break;
+								
+						 }
+						}
+					</script>
+					<div style="float:left" id="pawn_div">
+					Pawn:
+					<select id="pawn" onChange="option_change('pawn',this.selectedIndex + 1)" name="h">
+						<option value="1">queen</option>
+						<option value="2">bishop</option>
+						<option value="3">knight</option>
+						<option value="4">rook</option>
+					</select>
+					</div>
+					<div style="float:left" id="level_div">
+					Level:
+					<select id="level" onChange="option_change('level',this.selectedIndex + 1)" name="i">
+						<option value="1">stupid</option>
+						<option value="2">middling</option>
+						<option value="3">slow</option>
+					</select>
+					</div>
+			</td>
+		</tr>
+		
+		</tbody>
+		</table>
+	</form>
+</body>
+</html>
