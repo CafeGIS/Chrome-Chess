@@ -117,10 +117,16 @@
 					break;
 				case ls:
 					options.set('table',document.getElementById('t').innerHTML);
+					var arr = [b,N,Rh,R,KL];
+					options.set('vars',arr);
 					break;
 				case l:
 					if (options.get('table'))
 						document.getElementById('t').innerHTML = options.get('table');
+					if (options.get('vars')) {
+						var arr = options.get('vars',arr);
+						b = arr[0], N = arr[1], Rh = arr[2], R = arr[3], KL = arr[4]
+					}
 					break;
 				}
 		}
