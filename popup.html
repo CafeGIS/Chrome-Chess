@@ -42,13 +42,17 @@
 							options.set('swap',a);
 							a = options.get('undo') || 85;
 							options.set('undo',a);
+							
+							if (options.get('swap') == options.get('save')) set_default();
 						}
 						
 						function set_default() {
 							options.set('pawn', 1);
 							options.set('level', 2);
-							options.set('undo', 85);
-							options.set('swap', 83);
+							options.set('undo', 90);
+							options.set('swap', 67);
+							options.set('load', 76);
+							options.set('save', 83);
 						}
 						
 						function change(a,b) {
@@ -65,7 +69,12 @@
 							case 'swap':
 								options.set('swap', b);
 								break;
-								
+							case 'load':
+								options.set('load', b);
+								break;
+							case 'save':
+								options.set('save', b);
+								break;
 						 }
 						}
 					</script>
