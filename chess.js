@@ -87,7 +87,7 @@ H()
 N++
 M=8-M
 return 1}
-function fy(c){Df(c?'checkmate!':'stalemate!')
+function fy(c){Wf(c?'checkmate':'stalemate')
 J=c++
 }
 function H(){
@@ -165,6 +165,7 @@ R[s]=0
 O(s,0,1)
 O(e,a,1)}
 function Df(x){d.FF.b.value+='\n '+x}
+function Wf(x){d.FF.win.src = x+'.png'}
 function Rf(a){P=a
 for(var z=0;z<BE;z++)if(R[z]<16)O(z,R[z],1)
 if(P!=M){Tt=Z((d.FF.i.selectedIndex+1),M,0,BE,BE,Al,Bt,K)
@@ -184,7 +185,7 @@ Ic.left=(e.clientX+1)+'px'
 Ic.top=(e.clientY-4)+'px'}
 function O(x,y,z){if((A||x!='PI')&&z)x="i"+(P?119-x:x)
 d.images[x].src=y+'.gif'}
-h='<table border="0" cellpadding="2" class="t">'
+h='<table id="t" border="0" cellpadding="2" class="t" name="t">'
 for(y=90;y>10;y-=10){h+="<tr>"
 for(x=0;x<10;x++){z=y+x
 if(x&&x<9){h+=('<td class="'+(x+(y/10)&1?'b':'w')+'"><a href="#" onclick="B(P?119-'+z+':'+z+'); return false"><img src="0.gif" width="1" height="32" border="0"><img src="0.gif" width="32" height="30" name="i'+z+'" border="0"><img src="0.gif" width="1" height="32" border="0"></a></td>\n')}}h+='</tr>\n'}h+='</table>'

@@ -10,6 +10,12 @@ body {
 	font-size: small;
 }
 
+#win {
+	left: 30px;
+	position: absolute;
+	top: 100px;
+}
+
 a {
 	color: #981900;
 }

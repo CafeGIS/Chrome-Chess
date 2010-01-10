@@ -4,24 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" href="chess.css" type="text/css" />
 	<script src="lib/options.js" type="text/javascript" charset="utf-8"></script>
-	<script>
-		function keyPress(e) {
-			var unicode=e.keyCode? e.keyCode : e.charCode;
-			var z = parseInt(options.get('undo'));
-			var s = parseInt(options.get('swap'));
-			switch (unicode) {
-				case z: 
-					Gb();
-					break;
-				case s:
-					Rf(8-P);
-					break;
-				}
-		}
-	</script>
 </head>
 <body onselectstart="return false" onkeyup="keyPress(event)" onmousedown="return false" onload="H();init()">
 	<form name="FF" method="post" action="index.html">
+		<img src="0.gif" name="win" id="win"/>
 		<table border="0" cellspacing="2" align="center" class="mainTable">
 		<tbody>
 		<tr style="display:none;" class="controlBarUpper" id="size_top">
@@ -106,5 +92,28 @@
 		</tbody>
 		</table>
 	</form>
+	<script>
+		function keyPress(e) {
+			var unicode=e.keyCode? e.keyCode : e.charCode;
+			var z = parseInt(options.get('undo'));
+			var s = parseInt(options.get('swap'));
+			var l = parseInt(options.get('load'));
+			var ls = parseInt(options.get('save'));
+			switch (unicode) {
+				case z: 
+					Gb();
+					break;
+				case s:
+					Rf(8-P);
+					break;
+				case ls:
+					options.set('table',document.getElementById('t').innerHTML);
+					break;
+				case l:
+					document.getElementById('t').innerHTML = options.get('table');
+					break;
+				}
+		}
+	</script>
 </body>
 </html>

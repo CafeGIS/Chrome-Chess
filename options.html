@@ -87,19 +87,27 @@ table td:hover {
 							document.getElementById('pawn').selectedIndex = a - 1;
 							a = options.get('level') || 1;
 							document.getElementById('level').selectedIndex = a - 1;
-							a = options.get('swap') || 83;
+							a = options.get('swap') || 67;
 							document.getElementById('swap').value = a;
 							document.getElementById('swap_s').innerHTML = String.fromCharCode(a)
 							a = options.get('undo') || 85;
 							document.getElementById('undo').value = a;
 							document.getElementById('undo_s').innerHTML = String.fromCharCode(a)
+							a = options.get('load') || 76;
+							document.getElementById('load').value = a;
+							document.getElementById('load_s').innerHTML = String.fromCharCode(a)
+							a = options.get('save') || 83;
+							document.getElementById('save').value = a;
+							document.getElementById('save_s').innerHTML = String.fromCharCode(a)
 						}
 						
 						function set_default() {
 							options.set('pawn', 1);
 							options.set('level', 2);
-							options.set('undo', 85);
-							options.set('swap', 83);
+							options.set('undo', 90);
+							options.set('swap', 67);
+							options.set('load', 76);
+							options.set('save', 83);
 						}
 						
 						function keyPress(e,b) {
@@ -123,7 +131,12 @@ table td:hover {
 							case 'swap':
 								options.set('swap', b);
 								break;
-								
+							case 'load':
+								options.set('load', b);
+								break;
+							case 'save':
+								options.set('save', b);
+								break;
 						 }
 						}
 					</script>
@@ -132,6 +145,8 @@ table td:hover {
 							<td><table><tbody>
 					<tr><th><input id="undo" style="width:15px" onFocus="this.value=''" onkeyup="keyPress(event,'undo')" value="85"></input></th><td id="undo_s"></td><td>Undo</td></tr>
 					<tr><th><input id="swap" style="width:15px" onFocus="this.value=''" onkeyup="keyPress(event,'swap')" value="83"></input></th><td id="swap_s"></td><td>Swap</td></tr>
+					<tr><th><input id="save" style="width:15px" onFocus="this.value=''" onkeyup="keyPress(event,'save')" value="83"></input></th><td id="save_s"></td><td>Save</td></tr>
+					<tr><th><input id="load" style="width:15px" onFocus="this.value=''" onkeyup="keyPress(event,'load')" value="83"></input></th><td id="load_s"></td><td>Load</td></tr>
 					</tbody></table></td>
 						</tr>
 						<tr>
