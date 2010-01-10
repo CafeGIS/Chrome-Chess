@@ -119,7 +119,8 @@
 					options.set('table',document.getElementById('t').innerHTML);
 					break;
 				case l:
-					document.getElementById('t').innerHTML = options.get('table');
+					if (options.get('table'))
+						document.getElementById('t').innerHTML = options.get('table');
 					break;
 				}
 		}
