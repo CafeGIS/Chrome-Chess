@@ -97,8 +97,8 @@
 					</div>
 					<script>
 					var color =[];
-					color[0] = options.get('color[0]');
-					color[1] = options.get('color[1]');
+					color[0] = options.get('color[0]') || 'white';
+					color[1] = options.get('color[1]') || 'black';
 					var wri = '.w {background-color: '+color[0]+';}\n'
 					wri += '.b {background-color: '+color[1]+';}\n';
 					wri += '.maintable {border-color: '+color[1]+';}\n';

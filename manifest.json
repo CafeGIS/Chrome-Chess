@@ -1,6 +1,6 @@
 {
   "name": "Chess",
-  "version": "1.1",
+  "version": "1.1.5",
   "options_page": "options.html",
   "icons": { "48": "chess48.png",
           "128": "chess128.png" },
