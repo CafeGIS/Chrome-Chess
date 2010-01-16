@@ -124,7 +124,6 @@ table td:hover {
 							a = options.get('piece') || 'aaa';
 							var b;
 							switch (a) {case 'aaa':b=1;return;case 'p4wn':b=2;return;}
-							alert(b)
 							document.getElementById('piece').selectedIndex = b - 1;
 							document.getElementById('pieceimg').src = set.dir(a) + '11.' + set.ext(a);
 						}
