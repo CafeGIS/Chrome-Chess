@@ -1,3 +1,5 @@
+var set = {dir: function(a) {if (a) return 'pieces/' + a + '/';else return 'pieces/' + options.get('piece') + '/';},ext: function(a) {a = a || options.get('piece');switch(a) {case 'aaa':return 'png';break;case 'p4wn':return 'gif';break;case 'iconmuseo':return 'png';break;}}}
+function gim(a) {return set.dir() + a + '.' + set.ext();}
 M=I=P=N=q=K=J=Btime=0
 Bt=1999
 Al=-Bt
@@ -29,7 +31,7 @@ d=document
 A=E=d.all
 if(!E)event=0
 DM=d.getElementsByTagName||null
-if(DM||E){d.write('<img src="0.gif" id="PI" name="PI" width="32" height="30">')
+if(DM||E){d.write('<img src="'+gim(0)+'" id="PI" name="PI" width="32" height="30">')
 A=(E||d.getElementsByTagName('img'))
 Ic=A["PI"].style}cp=new Function('a','b','return b[0]-a[0]')
 function Z(c,U,C,s,e,A,B,K){var z=-1,C=-C,V=8-U,b=Al,r=R,S,E=r[e],g,d
@@ -184,7 +186,7 @@ function dr(e){e=e||event
 Ic.left=(e.clientX+1)+'px'
 Ic.top=(e.clientY-4)+'px'}
 function O(x,y,z){if((A||x!='PI')&&z)x="i"+(P?119-x:x)
-d.images[x].src=y+'.gif'}
+d.images[x].src=gim(y)}
 h='<table id="t" border="0" cellpadding="2" class="t" name="t">'
 for(y=90;y>10;y-=10){h+="<tr>"
 for(x=0;x<10;x++){z=y+x

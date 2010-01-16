@@ -41,12 +41,6 @@
 				-webkit-border-radius:10px;
 			}
 			
-			img {
-		-webkit-transition: all .2s ease-in-out;
-		-webkit-transform: scale(0.7);
-		width:110px;
-		height:110px;
-	}
 	
 	#content .center {
 				align:center;
@@ -54,9 +48,6 @@
 				vertical-align:center;
 			}
 	
-	img:hover {
-		-webkit-transform: scale(1.0);
-	}
 	
 	table td {
 	border-width: 1px;
@@ -82,6 +73,25 @@ table td:hover {
 			<div id="content">
 				<div>
 					<script>
+						var set = {
+							dir: function(a) {
+								if (a) return 'pieces/' + a + '/';
+								else return 'pieces/' + options.get('piece') + '/';
+							},
+							ext: function(a) {
+								switch(a) {
+									case 'aaa':
+										return 'png';
+										break;
+									case 'p4wn':
+										return 'gif';
+										break;
+									case 'iconmuseo':
+										return 'png';
+										break;
+								}
+							}
+						}
 						function init() {
 							var a = options.get('pawn') || 1;
 							document.getElementById('pawn').selectedIndex = a - 1;
@@ -107,6 +117,16 @@ table td:hover {
 							document.getElementById('color1').value = a;
 							document.getElementById('color1').style.color = a;
 							document.getElementById('color0').style.backgroundColor = a;
+							a = options.get('color[1]') || 'black';
+							document.getElementById('color1').value = a;
+							document.getElementById('color1').style.color = a;
+							document.getElementById('color0').style.backgroundColor = a;
+							a = options.get('piece') || 'aaa';
+							var b;
+							switch (a) {case 'aaa':b=1;return;case 'p4wn':b=2;return;}
+							alert(b)
+							document.getElementById('piece').selectedIndex = b - 1;
+							document.getElementById('pieceimg').src = set.dir(a) + '11.' + set.ext(a);
 						}
 						
 						function set_default() {
@@ -118,6 +138,7 @@ table td:hover {
 							options.set('save', 75);
 							options.set('color[0]', 'white');
 							options.set('color[1]', 'black');
+							options.set('piece', 'aaa');
 						}
 						
 						function keyPress(e,b) {
@@ -155,6 +176,10 @@ table td:hover {
 								options.set('color[1]', b);
 								document.getElementById('color0').style.backgroundColor = b;
 								break;
+							case 'piece':
+								options.set('piece', b);
+								document.getElementById('pieceimg').src =  set.dir(b)+'11.'+set.ext(b);
+								break;
 						 }
 						}
 					</script>
@@ -170,7 +195,7 @@ table td:hover {
 						<tr>
 						<td><div id="pawn_div">
 					Next pawn becomes:
-					<select id="pawn" onChange="change('pawn',this.selectedIndex + 1)" name="p">
+					<select id="pawn" onChange="change('pawn',this.value)" name="p">
 						<option value="1">queen</option>
 						<option value="2">bishop</option>
 						<option value="3">knight</option>
@@ -181,7 +206,7 @@ table td:hover {
 						<tr>
 						<td><div id="level_div">
 					Computer level:
-					<select id="level" onChange="change('level',this.selectedIndex + 1)" name="l">
+					<select id="level" onChange="change('level',this.value)" name="l">
 						<option value="1">stupid</option>
 						<option value="2">middling</option>
 						<option value="3">slow</option>
@@ -190,6 +215,13 @@ table td:hover {
 						</tr>
 						<tr>
 						<td>Colors:<br><input id="color0" onChange="change('color[0]',this.value)" style="color:blue;"></input><input id="color1" onChange="change('color[1]',this.value)" style="color:red;"></input></td>
+						</tr>
+						<tr>
+						<td>Set:<br><img id='pieceimg' width="20"/><select id="piece" onChange="change('piece',this.value)" name="l">
+						<option value="aaa">AAA</option>
+						<option value="p4wn">p4wn</option>
+						<option value="iconmuseo">Iconmuseo</option>
+					</select></td>
 						</tr>
 						<tr>
 						<td><button onclick="set_default()">Reset to Default</button></td>
