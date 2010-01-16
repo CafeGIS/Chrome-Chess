@@ -1,3 +1,4 @@
+if (!options.get('piece')) options.set('piece', 'aaa');
 var set = {dir: function(a) {if (a) return 'pieces/' + a + '/';else return 'pieces/' + options.get('piece') + '/';},ext: function(a) {a = a || options.get('piece');switch(a) {case 'aaa':return 'png';break;case 'p4wn':return 'gif';break;case 'iconmuseo':return 'png';break;}}}
 function gim(a) {return set.dir() + a + '.' + set.ext();}
 M=I=P=N=q=K=J=Btime=0
